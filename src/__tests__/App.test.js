@@ -1,11 +1,15 @@
+// Dependencies
 import React from "react";
 import { render, fireEvent, act } from "@testing-library/react";
 import MockAdapter from "axios-mock-adapter";
-import api from "../services/api";
+
+// Api
+import { api } from "../config";
+
+// App
+import App from "../App";
 
 const apiMock = new MockAdapter(api);
-
-import App from "../App";
 
 const wait = (amount = 0) => {
   return new Promise((resolve) => setTimeout(resolve, amount));
