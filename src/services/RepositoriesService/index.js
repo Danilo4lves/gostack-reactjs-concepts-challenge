@@ -17,9 +17,16 @@ function RepositoriesService() {
       return apiResponse;
     }
 
+    async function remove(id) {
+      const apiResponse = await RepositoriesApi?.remove(id);
+
+      return apiResponse;
+    }
+
     return {
       getAll,
       create,
+      remove,
     };
   }
 

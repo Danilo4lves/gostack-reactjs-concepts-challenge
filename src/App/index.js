@@ -14,7 +14,7 @@ function App() {
     async function fetchRepositories() {
       const apiResponse = await RepositoriesService?.getAll();
 
-      if (apiResponse?.statusText === "OK") {
+      if (apiResponse?.status === 200) {
         const { data = [] } = apiResponse;
 
         setRepositories(data);
@@ -35,7 +35,7 @@ function App() {
 
     const apiResponse = await RepositoriesService?.create(title, url, techs);
 
-    if (apiResponse?.statusText === "OK") {
+    if (apiResponse?.status === 200) {
       const { data = {} } = apiResponse;
 
       setRepositories((prevState) => [...prevState, data]);
@@ -44,9 +44,22 @@ function App() {
     }
   }, [repositories]);
 
-  const handleRemoveRepository = React.useCallback(async () => {
-    // TODO
-  }, []);
+  const handleRemoveRepository = React.useCallback(
+    async (id) => {
+      const apiResponse = await RepositoriesService?.remove(id);
+
+      if (apiResponse?.status === 204) {
+        const newRepositories = repositories?.filter((repository) => {
+          return repository?.id !== id;
+        });
+
+        setRepositories(newRepositories);
+      } else {
+        console.error("Error trying to obtain data...");
+      }
+    },
+    [repositories]
+  );
 
   return React.createElement(AppPresentational, {
     repositories,

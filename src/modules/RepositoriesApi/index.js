@@ -5,12 +5,10 @@ function RepositoriesApi() {
   let instance = null;
 
   function init() {
-    const GET_ALL_ENDPOINT = "/repositories";
-
-    const CREATE_ENDPOINT = "/repositories";
+    const MAIN_ENDPOINT = "/repositories";
 
     async function getAll() {
-      const apiResponse = await api?.get(GET_ALL_ENDPOINT);
+      const apiResponse = await api?.get(MAIN_ENDPOINT);
 
       return apiResponse;
     }
@@ -22,16 +20,24 @@ function RepositoriesApi() {
         techs,
       };
 
-      const apiResponse = await api?.post(CREATE_ENDPOINT, payload);
+      const apiResponse = await api?.post(MAIN_ENDPOINT, payload);
+
+      return apiResponse;
+    }
+
+    async function remove(id) {
+      const endpoint = `${MAIN_ENDPOINT}/${id}`;
+
+      const apiResponse = await api?.delete(endpoint);
 
       return apiResponse;
     }
 
     return {
-      GET_ALL_ENDPOINT,
-      CREATE_ENDPOINT,
+      MAIN_ENDPOINT,
       getAll,
       create,
+      remove,
     };
   }
 
