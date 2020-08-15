@@ -5,18 +5,29 @@ import React from 'react';
 import "../styles.css";
 
 function AppPresentational(props) {
-  const { handleAddRepository, handleRemoveRepository } = props;
+  const {
+    repositories,
+
+    handleAddRepository,
+    handleRemoveRepository,
+  } = props;
 
   return (
     <div>
       <ul data-testid="repository-list">
-        <li>
-          Repositório 1
+        {repositories?.map((repository) => {
+          const { id, title } = repository;
 
-          <button onClick={() => handleRemoveRepository(1)}>
-            Remover
-          </button>
-        </li>
+          return (
+            <li key={id}>
+              {title}
+
+              <button onClick={() => handleRemoveRepository(id)}>
+                Remover
+              </button>
+            </li>
+          );
+        })}
       </ul>
 
       <button onClick={handleAddRepository}>Adicionar</button>
