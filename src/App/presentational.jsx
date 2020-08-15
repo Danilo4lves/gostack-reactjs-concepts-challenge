@@ -1,8 +1,8 @@
 // Dependencies
 import React from 'react';
 
-// Styles
-import "../styles.css";
+// Styled components
+import { Container, List, ListItem, RemoveButton, AddButton } from './styles';
 
 function AppPresentational(props) {
   const {
@@ -13,25 +13,25 @@ function AppPresentational(props) {
   } = props;
 
   return (
-    <div>
-      <ul data-testid="repository-list">
+    <Container>
+      <List>
         {repositories?.map((repository) => {
           const { id, title } = repository;
 
           return (
-            <li key={id}>
-              {title}
+            <ListItem key={id}>
+              <span>{title}</span>
 
-              <button onClick={() => handleRemoveRepository(id)}>
+              <AddButton onClick={() => handleRemoveRepository(id)}>
                 Remover
-              </button>
-            </li>
+              </AddButton>
+            </ListItem>
           );
         })}
-      </ul>
+      </List>
 
-      <button onClick={handleAddRepository}>Adicionar</button>
-    </div>
+      <RemoveButton onClick={handleAddRepository}>Adicionar</RemoveButton>
+    </Container>
   );
 }
 
