@@ -27,8 +27,8 @@ function App() {
   }, []);
 
   const handleAddRepository = React.useCallback(async () => {
-    const counter = repositories?.length + 1;
-    const title = `Repository ${counter}`;
+    const currentTime = Date.now();
+    const title = `Repository ${currentTime}`;
     const url =
       "https://github.com/Danilo4lves/gostack-reactjs-concepts-challenge";
     const techs = ["React JS", "Node JS", "Redux", "React Native"];
@@ -42,7 +42,7 @@ function App() {
     } else {
       console.error("Error trying to obtain data...");
     }
-  }, [repositories]);
+  }, []);
 
   const handleRemoveRepository = React.useCallback(
     async (id) => {
