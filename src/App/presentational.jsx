@@ -1,15 +1,11 @@
-import React from "react";
+// Dependencies
+import React from 'react';
 
-import "./styles.css";
+// Styles
+import "../styles.css";
 
-function App() {
-  async function handleAddRepository() {
-    // TODO
-  }
-
-  async function handleRemoveRepository(id) {
-    // TODO
-  }
+function AppPresentational(props) {
+  const { handleAddRepository, handleRemoveRepository } = props;
 
   return (
     <div>
@@ -28,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppPresentational;
