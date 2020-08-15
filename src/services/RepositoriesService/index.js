@@ -11,8 +11,15 @@ function RepositoriesService() {
       return apiResponse;
     }
 
+    async function create(title, url, techs) {
+      const apiResponse = await RepositoriesApi?.create(title, url, techs);
+
+      return apiResponse;
+    }
+
     return {
       getAll,
+      create,
     };
   }
 

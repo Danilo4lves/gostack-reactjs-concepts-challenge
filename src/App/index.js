@@ -19,20 +19,34 @@ function App() {
 
         setRepositories(data);
       } else {
-        console.log("Error trying to obtain data...");
+        console.error("Error trying to obtain data...");
       }
     }
 
     fetchRepositories();
   }, []);
 
-  async function handleAddRepository() {
-    // TODO
-  }
+  const handleAddRepository = React.useCallback(async () => {
+    const counter = repositories?.length + 1;
+    const title = `Repository ${counter}`;
+    const url =
+      "https://github.com/Danilo4lves/gostack-reactjs-concepts-challenge";
+    const techs = ["React JS", "Node JS", "Redux", "React Native"];
 
-  async function handleRemoveRepository(id) {
+    const apiResponse = await RepositoriesService?.create(title, url, techs);
+
+    if (apiResponse?.statusText === "OK") {
+      const { data = {} } = apiResponse;
+
+      setRepositories((prevState) => [...prevState, data]);
+    } else {
+      console.error("Error trying to obtain data...");
+    }
+  }, [repositories]);
+
+  const handleRemoveRepository = React.useCallback(async () => {
     // TODO
-  }
+  }, []);
 
   return React.createElement(AppPresentational, {
     repositories,
